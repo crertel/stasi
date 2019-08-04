@@ -1,0 +1,5 @@
+<h1>Edit Agent request</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.agent_request_path(@conn, :update, @agent_request)) %>
+
+<span><%= link "Back", to: Routes.agent_request_path(@conn, :index) %></span>

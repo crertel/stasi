@@ -1,0 +1,43 @@
+<h1>Show Agent request</h1>
+
+<ul>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @agent_request.url %>
+  </li>
+
+  <li>
+    <strong>Origin url:</strong>
+    <%= @agent_request.origin_url %>
+  </li>
+
+  <li>
+    <strong>Status code:</strong>
+    <%= @agent_request.status_code %>
+  </li>
+
+  <li>
+    <strong>Completed at:</strong>
+    <%= @agent_request.completed_at %>
+  </li>
+
+  <li>
+    <strong>Method:</strong>
+    <%= @agent_request.method %>
+  </li>
+
+  <li>
+    <strong>Content type:</strong>
+    <%= @agent_request.content_type %>
+  </li>
+
+  <li>
+    <strong>Content length:</strong>
+    <%= @agent_request.content_length %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.agent_request_path(@conn, :edit, @agent_request) %></span>
+<span><%= link "Back", to: Routes.agent_request_path(@conn, :index) %></span>

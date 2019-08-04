@@ -1,0 +1,38 @@
+<h1>Listing Agent requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Origin url</th>
+      <th>Status code</th>
+      <th>Completed at</th>
+      <th>Method</th>
+      <th>Content type</th>
+      <th>Content length</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for agent_request <- @agent_requests do %>
+    <tr>
+      <td><%= agent_request.url %></td>
+      <td><%= agent_request.origin_url %></td>
+      <td><%= agent_request.status_code %></td>
+      <td><%= agent_request.completed_at %></td>
+      <td><%= agent_request.method %></td>
+      <td><%= agent_request.content_type %></td>
+      <td><%= agent_request.content_length %></td>
+
+      <td>
+        <%= link "Show", to: Routes.agent_request_path(@conn, :show, agent_request) %>
+        <%= link "Edit", to: Routes.agent_request_path(@conn, :edit, agent_request) %>
+        <%= link "Delete", to: Routes.agent_request_path(@conn, :delete, agent_request), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Agent request", to: Routes.agent_request_path(@conn, :new) %></span>

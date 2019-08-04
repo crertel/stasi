@@ -16,6 +16,7 @@ defmodule StasiWeb.Router do
   scope "/", StasiWeb do
     pipe_through :browser
     get "/", PageController, :index
+    resources "/agent_requests", AgentRequestController
   end
 
   scope "/", StasiWeb do
