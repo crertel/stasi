@@ -14,7 +14,7 @@
 <%= for crawl_request <- @crawl_requests do %>
     <tr>
       <td><%= crawl_request.id %></td>
-      <td><%= crawl_request.generating_request %></td>
+      <td><%= link(crawl_request.generating_request, to: Routes.agent_request_path(@conn, :show, crawl_request.generating_request)) %></td>
       <td><%= crawl_request.crawled_at %></td>
 
       <td>

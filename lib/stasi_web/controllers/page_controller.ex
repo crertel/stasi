@@ -2,6 +2,8 @@ defmodule StasiWeb.PageController do
   require Logger
   use StasiWeb, :controller
   alias Stasi.Requests
+  alias Stasi.Requests.AgentRequest
+  alias Stasi.Requests.CrawlRequest
 
   def index(conn, _params) do
     render(conn, "index.html")
@@ -22,16 +24,13 @@ defmodule StasiWeb.PageController do
   } = params) do
     StasiWeb.Endpoint.broadcast("traffic:dashboard", "new_request", %{body: params})
 
-    case Requests.create_agent_request(params) do
-      {:ok, agent_request} ->
-        Logger.info "#{inspect params}"
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        Logger.error "Failed to make agent request"
+    {:ok, %AgentRequest{id: req_id, content_type: req_type}} = Requests.create_agent_request(params)
+    if String.contains?(req_type, "html") do
+      Logger.info "#{inspect params}"
+      {:ok, %CrawlRequest{}} = Requests.create_crawl_request(%{generating_request: req_id, crawled_at: DateTime.utc_now()})
     end
 
     conn
     |> resp(:created, "")
-
   end
 end
