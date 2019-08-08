@@ -73,4 +73,65 @@ defmodule Stasi.RequestsTest do
       assert %Ecto.Changeset{} = Requests.change_agent_request(agent_request)
     end
   end
+
+  describe "crawl_requests" do
+    alias Stasi.Requests.CrawlRequest
+
+    @valid_attrs %{crawled_at: "2010-04-17T14:00:00Z", generating_request: "7488a646-e31f-11e4-aace-600308960662"}
+    @update_attrs %{crawled_at: "2011-05-18T15:01:01Z", generating_request: "7488a646-e31f-11e4-aace-600308960668"}
+    @invalid_attrs %{crawled_at: nil, generating_request: nil}
+
+    def crawl_request_fixture(attrs \\ %{}) do
+      {:ok, crawl_request} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Requests.create_crawl_request()
+
+      crawl_request
+    end
+
+    test "list_crawl_requests/0 returns all crawl_requests" do
+      crawl_request = crawl_request_fixture()
+      assert Requests.list_crawl_requests() == [crawl_request]
+    end
+
+    test "get_crawl_request!/1 returns the crawl_request with given id" do
+      crawl_request = crawl_request_fixture()
+      assert Requests.get_crawl_request!(crawl_request.id) == crawl_request
+    end
+
+    test "create_crawl_request/1 with valid data creates a crawl_request" do
+      assert {:ok, %CrawlRequest{} = crawl_request} = Requests.create_crawl_request(@valid_attrs)
+      assert crawl_request.crawled_at == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
+      assert crawl_request.generating_request == "7488a646-e31f-11e4-aace-600308960662"
+    end
+
+    test "create_crawl_request/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Requests.create_crawl_request(@invalid_attrs)
+    end
+
+    test "update_crawl_request/2 with valid data updates the crawl_request" do
+      crawl_request = crawl_request_fixture()
+      assert {:ok, %CrawlRequest{} = crawl_request} = Requests.update_crawl_request(crawl_request, @update_attrs)
+      assert crawl_request.crawled_at == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
+      assert crawl_request.generating_request == "7488a646-e31f-11e4-aace-600308960668"
+    end
+
+    test "update_crawl_request/2 with invalid data returns error changeset" do
+      crawl_request = crawl_request_fixture()
+      assert {:error, %Ecto.Changeset{}} = Requests.update_crawl_request(crawl_request, @invalid_attrs)
+      assert crawl_request == Requests.get_crawl_request!(crawl_request.id)
+    end
+
+    test "delete_crawl_request/1 deletes the crawl_request" do
+      crawl_request = crawl_request_fixture()
+      assert {:ok, %CrawlRequest{}} = Requests.delete_crawl_request(crawl_request)
+      assert_raise Ecto.NoResultsError, fn -> Requests.get_crawl_request!(crawl_request.id) end
+    end
+
+    test "change_crawl_request/1 returns a crawl_request changeset" do
+      crawl_request = crawl_request_fixture()
+      assert %Ecto.Changeset{} = Requests.change_crawl_request(crawl_request)
+    end
+  end
 end

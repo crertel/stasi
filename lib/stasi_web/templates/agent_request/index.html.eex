@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Url</th>
       <th>Origin url</th>
       <th>Status code</th>
@@ -17,6 +18,7 @@
   <tbody>
 <%= for agent_request <- @agent_requests do %>
     <tr>
+      <td><%= agent_request.id %></td>
       <td><%= agent_request.url %></td>
       <td><%= agent_request.origin_url %></td>
       <td><%= agent_request.status_code %></td>

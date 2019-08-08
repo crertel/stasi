@@ -7,6 +7,10 @@ defmodule StasiWeb.PageController do
     render(conn, "index.html")
   end
 
+  def real_time(conn, _params) do
+    render(conn, "real_time.html")
+  end
+
   def receive_update(conn, %{
     "completed_at" => completed_at,
     "method" => method,
@@ -23,7 +27,7 @@ defmodule StasiWeb.PageController do
         Logger.info "#{inspect params}"
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        Logger.error "Failedto make agent request"
+        Logger.error "Failed to make agent request"
     end
 
     conn

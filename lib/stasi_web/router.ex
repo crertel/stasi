@@ -16,7 +16,9 @@ defmodule StasiWeb.Router do
   scope "/", StasiWeb do
     pipe_through :browser
     get "/", PageController, :index
+    get "/feed", PageController, :real_time
     resources "/agent_requests", AgentRequestController
+    resources "/crawl_requests", CrawlRequestController
   end
 
   scope "/", StasiWeb do

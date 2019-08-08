@@ -1,0 +1,5 @@
+<h1>Edit Crawl request</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.crawl_request_path(@conn, :update, @crawl_request)) %>
+
+<span><%= link "Back", to: Routes.crawl_request_path(@conn, :index) %></span>

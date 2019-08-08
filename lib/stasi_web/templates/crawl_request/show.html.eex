@@ -1,0 +1,18 @@
+<h1>Show Crawl request</h1>
+
+<ul>
+
+  <li>
+    <strong>Generating request:</strong>
+    <%= @crawl_request.generating_request %>
+  </li>
+
+  <li>
+    <strong>Crawled at:</strong>
+    <%= @crawl_request.crawled_at %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.crawl_request_path(@conn, :edit, @crawl_request) %></span>
+<span><%= link "Back", to: Routes.crawl_request_path(@conn, :index) %></span>

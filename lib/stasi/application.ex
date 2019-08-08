@@ -13,7 +13,8 @@ defmodule Stasi.Application do
       # Start the endpoint when the application starts
       StasiWeb.Endpoint,
       # Starts a worker by calling: Stasi.Worker.start_link(arg)
-      Stasi.Proxy
+      Stasi.Proxy,
+      {Stasi.TrafficIngest, name: TrafficIngest}
       # {Stasi.Worker, arg},
     ]
 

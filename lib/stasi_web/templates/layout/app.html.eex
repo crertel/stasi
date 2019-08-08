@@ -12,12 +12,15 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+          <li><a href="/feed">Real-time</a></li>
+            <li><a href="/agent_requests">Traffic</a></li>
+            <li><a href="/crawl_requests">Crawl Queue</a></li>
           </ul>
         </nav>
         <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+          <img src="<%= Routes.static_path(@conn, "/images/stasi-96.png") %>" alt="Stasi Logo"/>          
         </a>
+        
       </section>
     </header>
     <main role="main" class="container">

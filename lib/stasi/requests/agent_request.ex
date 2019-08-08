@@ -2,6 +2,8 @@ defmodule Stasi.Requests.AgentRequest do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+
   schema "agent_requests" do
     field :completed_at, :utc_datetime
     field :content_length, :integer
