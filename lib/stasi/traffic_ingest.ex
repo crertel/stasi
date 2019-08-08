@@ -2,6 +2,8 @@ defmodule Stasi.TrafficIngest do
   use GenServer
   require Logger
 
+
+
   def start_link(opts) do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
@@ -19,6 +21,7 @@ defmodule Stasi.TrafficIngest do
   def handle_info( :check_traffic, state) do
     Logger.info "Checking traffic"
     # for traffic that does matter, schedule it for crawling
+
 
 
     # schedule ourselves again

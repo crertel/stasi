@@ -8,6 +8,8 @@ defmodule Stasi.Requests do
 
   alias Stasi.Requests.AgentRequest
 
+  import Ecto.Query, only: [from: 2]
+
   @doc """
   Returns the list of agent_requests.
 
@@ -196,5 +198,23 @@ defmodule Stasi.Requests do
   """
   def change_crawl_request(%CrawlRequest{} = crawl_request) do
     CrawlRequest.changeset(crawl_request, %{})
+  end
+
+  def list_completed_crawl_requests do
+    q = from c in CrawlRequest,
+          where: c.status == "crawled"
+    Repo.all(q)
+  end
+
+  def list_pending_crawl_requests do
+    q = from c in CrawlRequest,
+          where: c.status == "uncrawled"
+    Repo.all(q)
+  end
+
+  def list_progressing_crawl_requests do
+    q = from c in CrawlRequest,
+          where: c.status == "crawling"
+    Repo.all(q)
   end
 end

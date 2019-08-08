@@ -12,6 +12,26 @@
     <%= @crawl_request.crawled_at %>
   </li>
 
+  <li>
+    <strong>Source:</strong>
+    <%= @crawl_request.status %>
+  </li>
+  
+  <li>
+    <strong>Source:</strong>
+    <%= @crawl_request.source %>
+  </li>
+
+  <li>
+    <strong>Depth</strong>
+    <%= @crawl_request.depth %>
+  </li>
+
+  <li>
+    <strong>Target:</strong>
+    <%= @crawl_request.target %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.crawl_request_path(@conn, :edit, @crawl_request) %></span>

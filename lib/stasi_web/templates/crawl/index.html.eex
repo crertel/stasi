@@ -1,0 +1,28 @@
+<h1>Listing Crawls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Generating crawl request</th>
+      <th>Target</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for crawl <- @crawls do %>
+    <tr>
+      <td><%= crawl.generating_crawl_request %></td>
+      <td><%= crawl.target %></td>
+
+      <td>
+        <%= link "Show", to: Routes.crawl_path(@conn, :show, crawl) %>
+        <%= link "Edit", to: Routes.crawl_path(@conn, :edit, crawl) %>
+        <%= link "Delete", to: Routes.crawl_path(@conn, :delete, crawl), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Crawl", to: Routes.crawl_path(@conn, :new) %></span>
