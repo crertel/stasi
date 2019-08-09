@@ -7,6 +7,7 @@ defmodule Stasi.Requests do
   alias Stasi.Repo
 
   alias Stasi.Requests.AgentRequest
+  alias Stasi.Requests.CrawlRequest
 
   import Ecto.Query, only: [from: 2]
 
@@ -201,20 +202,22 @@ defmodule Stasi.Requests do
   end
 
   def list_completed_crawl_requests do
-    q = from c in CrawlRequest,
-          where: c.status == "crawled"
+    q = from(c in CrawlRequest, where: c.status == "crawled")
     Repo.all(q)
   end
 
   def list_pending_crawl_requests do
-    q = from c in CrawlRequest,
-          where: c.status == "uncrawled"
+    q = from(c in CrawlRequest, where: c.status == "uncrawled")
     Repo.all(q)
   end
 
   def list_progressing_crawl_requests do
-    q = from c in CrawlRequest,
-          where: c.status == "crawling"
+    q = from(c in CrawlRequest, where: c.status == "crawling")
+    Repo.all(q)
+  end
+
+  def list_failed_crawl_requests do
+    q = from(c in CrawlRequest, where: c.status == "failed")
     Repo.all(q)
   end
 end

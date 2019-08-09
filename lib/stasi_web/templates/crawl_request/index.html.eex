@@ -102,4 +102,38 @@
   </tbody>
 </table>
 
+<h2>Failed crawls</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Generating request</th>
+      <th>Crawled at</th>
+      <th>Status</th>
+      <th>Source</th>
+      <th>Depth</th>
+      <th>Target</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for crawl_request <- @failed_requests do %>
+    <tr>
+      <td><%= crawl_request.id %></td>
+      <td><%= link(crawl_request.generating_request, to: Routes.agent_request_path(@conn, :show, crawl_request.generating_request)) %></td>
+      <td><%= crawl_request.crawled_at %></td>
+      <td><%= crawl_request.status %></td>
+      <td><%= crawl_request.source %></td>
+      <td><%= crawl_request.depth %></td>
+      <td><%= crawl_request.target %></td>
+
+      <td>
+        <%= link "Show", to: Routes.crawl_request_path(@conn, :show, crawl_request) %>
+        <%= link "Edit", to: Routes.crawl_request_path(@conn, :edit, crawl_request) %>
+        <%= link "Delete", to: Routes.crawl_request_path(@conn, :delete, crawl_request), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
 <span><%= link "New Crawl request", to: Routes.crawl_request_path(@conn, :new) %></span>

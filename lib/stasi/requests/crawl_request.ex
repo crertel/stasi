@@ -13,6 +13,7 @@ defmodule Stasi.Requests.CrawlRequest do
   * `uncrawled`
   * `crawling`
   * `crawled`
+  * `failed`
   """
   use Ecto.Schema
   import Ecto.Changeset

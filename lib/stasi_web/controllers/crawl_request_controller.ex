@@ -7,7 +7,8 @@ defmodule StasiWeb.CrawlRequestController do
   def index(conn, _params) do
     render(conn, "index.html", completed_requests: Requests.list_completed_crawl_requests(),
                               pending_requests: Requests.list_pending_crawl_requests(),
-                              progressing_requests: Requests.list_progressing_crawl_requests())
+                              progressing_requests: Requests.list_progressing_crawl_requests(),
+                              failed_requests: Requests.list_failed_crawl_requests())
   end
 
   def new(conn, _params) do
